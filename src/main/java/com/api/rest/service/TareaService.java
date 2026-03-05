@@ -3,20 +3,22 @@ package com.api.rest.service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-
 import com.api.rest.entity.Tarea;
 import com.api.rest.repository.TareaRepository;
 
 @Service
 public class TareaService {
-    
+
+private final GeminiService geminiService;    
 private  TareaRepository tareaRepository;
 
-public TareaService(TareaRepository tareaRepository) {
+public TareaService(TareaRepository tareaRepository, GeminiService geminiService) {
     this.tareaRepository = tareaRepository;
+    this.geminiService = geminiService;
 }
 
 /*
@@ -66,6 +68,15 @@ public Map<String, Long> getResumenPorEstado() {
     
 }
 
+String getTips(String iaTips) {
+    return geminiService.generarRespuesta("Dame una recomendación para estudiar el tema "+iaTips) ;                  // convierte el stream a List
+}
+
+public String getTipsTarea(Integer id){    
+    Tarea tarea = tareaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Tarea no encontrada con id: " + id));    
+    return getTips(tarea.getTitulo());
+}
 
 
 }

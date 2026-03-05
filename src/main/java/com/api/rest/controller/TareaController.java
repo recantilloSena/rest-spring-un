@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 
+
 @RestController
 @RequestMapping("/api/v1/tareas")
 @Tag(name = "Tareas - Streams", description = "Ejemplos de Stream API de Java aplicados a Tareas")
@@ -86,4 +87,17 @@ public class TareaController {
     public Map<String, Long> getResumenPorEstado() {
         return tareaService.getResumenPorEstado();
     }
+
+
+    @Operation(
+        summary = "Sugerencias con IA",
+        description = """
+                Ejemplo de como la IA puede ser utilizada dentro de nuestra lógica.
+                """
+    )
+    @GetMapping("/tips/{id}")
+    public String getTips(@PathVariable Integer id ) {
+        return tareaService.getTipsTarea(id);
+    }
+    
 }
