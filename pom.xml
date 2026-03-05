@@ -62,6 +62,10 @@
 		<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
         
+<dependency>
+    <groupId>com.google.genai</groupId>
+    <artifactId>google-genai</artifactId>
+    <version>0.1.0</version> </dependency>
 
 
 	</dependencies>
