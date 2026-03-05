@@ -1,5 +1,6 @@
 package com.api.rest.controller;
 
+import com.api.rest.service.DataService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Datos", description = "Operaciones sobre datos")
 public class DataController {
 
+    private final DataService dataService;
+
+    public DataController(DataService dataService) {
+        this.dataService = dataService;
+    }
 
     @GetMapping("/suma/{a}/{b}")
     public String getSuma(
@@ -20,6 +26,6 @@ public class DataController {
             @RequestParam(defaultValue = "COP") String moneda
     )
     {
-        return  a + b + "  " + moneda;
+        return  dataService.getSuma(a,b,moneda);
     }
 }
