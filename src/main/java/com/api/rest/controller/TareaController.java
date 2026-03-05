@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -24,6 +22,12 @@ public class TareaController {
         this.tareaService = tareaService;
     }
 
+    @Operation(
+        summary = "Find All sobre la Tabla",
+        description = """
+                Obtiene todos los datos de la tabla Tareas
+                """
+    )
     @GetMapping("/")
     public List<Tarea> findAllTareas() {
         return tareaService.findAllTareas();
