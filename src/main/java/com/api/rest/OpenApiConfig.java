@@ -1,4 +1,4 @@
-package com.api.rest.config;
+package com.api.rest;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
